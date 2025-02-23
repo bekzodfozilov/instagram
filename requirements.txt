@@ -13,7 +13,7 @@ djangorestframework==3.15.2
 djangorestframework-simplejwt==5.4.0
 fastapi==0.115.6
 frozenlist==1.5.0
-deep-translator==1.11.4  # `googletrans` o‘rniga ishlatish tavsiya etiladi
+deep-translator==1.11.4
 gunicorn==23.0.0
 magic-filter==1.0.12
 multidict==6.1.0
@@ -21,8 +21,8 @@ packaging==24.2
 phonenumbers==8.13.53
 pillow==11.1.0
 propcache==0.2.1
-pydantic==2.10.5
-pydantic-core==2.27.2
+pydantic==2.5.3  # ✅ Aiogram bilan mos versiya
+pydantic-core==2.14.6  # ✅ Pydantic bilan mos versiya
 PyJWT==2.10.1
 python-decouple==3.8
 pytz==2024.2
