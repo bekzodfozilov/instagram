@@ -24,9 +24,7 @@ h2==3.2.0
 hpack==3.0.0
 hstspreload==2025.1.1
 httpcore==0.9.1
-httpx==0.13.3
 hyperframe==5.2.0
-idna==2.10
 magic-filter==1.0.12
 multidict==6.1.0
 packaging==24.2
