@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'phonenumbers',
     'twilio',
-    'whitenoise.runserver_nostatic'
+'whitenoise',  # Faqat shu nom ishlatiladi
+
 
     # local apps
     'user',
@@ -59,7 +60,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # <-- BU YERDA VERGUL KERAK!
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -67,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFileStorage'
 
