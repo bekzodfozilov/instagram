@@ -9,9 +9,13 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os.path
 from pathlib import Path
 from datetime import timedelta
+
+from django.conf import STATICFILES_STORAGE_ALIAS
+from django.conf.global_settings import STATICFILES_DIRS, STATIC_ROOT
+from django.contrib.staticfiles.storage import StaticFilesStorage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'phonenumbers',
     'twilio',
+    'whitenoise.runserver_nostatic'
 
     # local apps
     'user',
@@ -54,6 +59,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -62,7 +68,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-REST_FRAMEWORK ={
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFileStorage'
+
+REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         "rest_framework.permissions.IsAuthenticated", ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -110,8 +118,6 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
-
-
 
 ROOT_URLCONF = 'clone_instagram.urls'
 
@@ -170,10 +176,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Tashkent'
 USE_TZ = True
 
-
 USE_I18N = True
-
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -181,6 +184,9 @@ USE_I18N = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR), 'static']
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
